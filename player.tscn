@@ -9,8 +9,10 @@ radius = 1.0
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_fiv4h")
 
-[node name="player" parent="." instance=ExtResource("1_g7kyt")]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_ptkjd")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("1_g7kyt")]
