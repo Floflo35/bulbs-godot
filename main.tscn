@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbt5flgiebp7k"]
+[gd_scene load_steps=9 format=3 uid="uid://bbt5flgiebp7k"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
+[ext_resource type="Script" path="res://main.gd" id="1_65fke"]
+[ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_bsovj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r2ly"]
 size = Vector3(60, 2, 60)
@@ -22,6 +24,8 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node"]
+script = ExtResource("1_65fke")
+mob_scene = ExtResource("2_bsovj")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -69,3 +73,9 @@ curve = SubResource("Curve3D_pcikw")
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
 transform = Transform3D(7.13627e-05, 0, -1, 0, 1, 0, 1, 0, 7.13627e-05, -29.9206, 0, -30.0428)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
