@@ -24,6 +24,8 @@ MusicPlayer="*res://music_player.tscn"
 window/size/viewport_width=720
 window/size/viewport_height=540
 window/size/resizable=false
+window/size/borderless=true
+window/vsync/vsync_mode=0
 
 [input]
 
