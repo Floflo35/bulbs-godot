@@ -1,5 +1,7 @@
 extends Node
 
+# Tutorial done!
+
 @export var mob_scene: PackedScene
 
 func _ready() -> void:
