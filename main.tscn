@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_bsovj"]
-[ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://fonts/Montserrat-Medium.ttf" id="4_yet0a"]
+[ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://TutoAssets/fonts/Montserrat-Medium.ttf" id="4_yet0a"]
 [ext_resource type="Script" path="res://score_label.gd" id="5_1i7ir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r2ly"]

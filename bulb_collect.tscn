@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://011v7mkeegm5"]
+
+[ext_resource type="PackedScene" uid="uid://besq8gxk6nh5i" path="res://3D Models/LightBulbTest.fbx" id="1_w218c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onb2n"]
+radius = 0.979936
+height = 4.0
+
+[node name="BulbCollect" type="Node3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="LightBulbTest" parent="Pivot" instance=ExtResource("1_w218c")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05976, 0)
+shape = SubResource("CapsuleShape3D_onb2n")
