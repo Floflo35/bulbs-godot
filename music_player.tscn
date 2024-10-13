@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://byturvo6pyx00"]
 
-[ext_resource type="AudioStream" uid="uid://x6b0jur3nipq" path="res://TutoAssets/art/House In a Forest Loop.ogg" id="1_ahsog"]
+[ext_resource type="AudioStream" uid="uid://x6b0jur3nipq" path="res://Misc/TutoArchive/art/House In a Forest Loop.ogg" id="1_ahsog"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_ahsog")
