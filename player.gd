@@ -55,6 +55,11 @@ func _physics_process(delta):
 		if collision.get_collider() == null:
 			continue
 			
+		if collision.get_collider().is_in_group("collectibles"):
+			print("item!")
+			var collectible = collision.get_collider()
+			collectible.pickup()
+			
 		# If the collision is with a mob
 		if collision.get_collider().is_in_group("mob"):
 			var mob = collision.get_collider()

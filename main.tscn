@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbt5flgiebp7k"]
+[gd_scene load_steps=11 format=3 uid="uid://bbt5flgiebp7k"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://dxmh8lwjw6p04" path="res://Assets/Materials/Ground1.tres" id="3_tmcdt"]
 [ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="4_yet0a"]
 [ext_resource type="Script" path="res://score_label.gd" id="5_1i7ir"]
+[ext_resource type="PackedScene" uid="uid://011v7mkeegm5" path="res://bulb_collect.tscn" id="7_k0c7v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r2ly"]
 size = Vector3(60, 2, 60)
@@ -36,6 +37,7 @@ surface_material_override/0 = ExtResource("3_tmcdt")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.432322, 0.901719, -4.02365e-08, 0.770359, -0.369342, 0.519743, 0.468662, -0.224696, -0.854323, 0, 14.586, 0)
 shadow_enabled = true
+sky_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("1_0qx0n")]
 
@@ -94,6 +96,9 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press Enter to retry"
+
+[node name="BulbCollect" parent="." instance=ExtResource("7_k0c7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.35159)
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
