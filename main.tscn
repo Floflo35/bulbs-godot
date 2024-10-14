@@ -34,11 +34,6 @@ shape = SubResource("BoxShape3D_2r2ly")
 mesh = SubResource("BoxMesh_rwxqd")
 surface_material_override/0 = ExtResource("3_tmcdt")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.432322, 0.901719, -4.02365e-08, 0.770359, -0.369342, 0.519743, 0.468662, -0.224696, -0.854323, 0, 14.586, 0)
-shadow_enabled = true
-sky_mode = 2
-
 [node name="Player" parent="." instance=ExtResource("1_0qx0n")]
 
 [node name="CameraPivot" type="Marker3D" parent="Player"]
@@ -99,6 +94,8 @@ text = "Press Enter to retry"
 
 [node name="BulbCollect" parent="." instance=ExtResource("7_k0c7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.35159)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
