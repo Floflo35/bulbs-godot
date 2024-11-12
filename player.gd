@@ -69,6 +69,12 @@ func _physics_process(delta):
 				target_velocity.y = bounce_impulse
 				# Prevent further duplicate calls.
 				break
+				
+		if collision.get_collider().is_in_groupe("collectible"):
+			var collectible = collision.get_collider()
+			print("collected")
+			collectible.pickup()
+			break
 	
 	# Moving the Character
 	velocity = target_velocity

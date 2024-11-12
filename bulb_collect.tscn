@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://011v7mkeegm5"]
 
-[ext_resource type="Script" path="res://bulb_collect.gd" id="1_81acf"]
+[ext_resource type="Script" path="res://collectible.gd" id="1_81acf"]
 [ext_resource type="PackedScene" uid="uid://besq8gxk6nh5i" path="res://Assets/3D Models/LightBulbTest.fbx" id="1_w218c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onb2n"]

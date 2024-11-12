@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bi1dbppyehyis" path="res://Assets/Textures/Ground082L_2K/Ground082L_2K-PNG_Roughness.png" id="4_costq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5d3rr"]
-load_path = "res://.godot/imported/Ground082L_1K-PNG_Color.png-e26cf6cfdbd47c33f22bffc06684e196.s3tc.ctex"
 
 [resource]
 albedo_texture = ExtResource("1_rbw6s")
