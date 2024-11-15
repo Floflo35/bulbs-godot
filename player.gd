@@ -14,6 +14,9 @@ signal hit
 
 var target_velocity = Vector3.ZERO
 
+func _ready() -> void:
+	print("ready")
+
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -70,11 +73,10 @@ func _physics_process(delta):
 				# Prevent further duplicate calls.
 				break
 				
-		if collision.get_collider().is_in_groupe("collectible"):
-			var collectible = collision.get_collider()
+		if collision.get_collider().is_in_group("collectible"):
+			#var collectible = collision.get_collider()
 			print("collected")
-			collectible.pickup()
-			break
+			#collectible.pickup()
 	
 	# Moving the Character
 	velocity = target_velocity
@@ -86,5 +88,5 @@ func die():
 	hit.emit()
 	queue_free()
 
-func _on_mob_detector_body_entered(body):
+func _on_mob_detector_body_entered(_body):
 	die()

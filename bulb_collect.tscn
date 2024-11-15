@@ -104,3 +104,9 @@ light_energy = 4.39
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.90707, 0, 0, 0, 1, 0, 1.28792, -0.114924)
+aabb = AABB(-1.17043, -1, -1.68496, 2.34087, 2, 3.36993)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]

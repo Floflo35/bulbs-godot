@@ -6,6 +6,7 @@ extends Node
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
+	print("main ready")
 
 func _on_player_hit() -> void:
 	#$MobTimer.stop()
@@ -17,3 +18,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		# This restarts the current scene.
 		get_tree().reload_current_scene()
 		
+
+func _on_bulb_collect_picked() -> void:
+	print("collectible picked up! (main.gd)")
