@@ -93,5 +93,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.35159)
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
+[node name="Mob" parent="." instance=ExtResource("2_bsovj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09607, 0, 6.60069)
+
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="picked" from="BulbCollect" to="." method="_on_bulb_collect_picked"]

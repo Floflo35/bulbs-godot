@@ -90,3 +90,7 @@ func die():
 
 func _on_mob_detector_body_entered(_body):
 	die()
+	
+
+func _on_pickup_detector_body_entered(_body) -> void:
+	print ("pickup item detected!")

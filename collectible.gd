@@ -3,7 +3,7 @@ extends StaticBody3D
 signal picked
 
 func _ready():
-	pass
+	print("pickup ready")
 
 # When the player picks up this item
 func pickup():

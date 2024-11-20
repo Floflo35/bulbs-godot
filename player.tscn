@@ -85,6 +85,15 @@ shape = SubResource("SphereShape3D_ptkjd")
 [node name="Character" parent="Pivot" instance=ExtResource("1_g7kyt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
+[node name="PickupDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.909658, 0)
+shape = SubResource("CylinderShape3D_iqpok")
+
 [node name="MobDetector" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -100,4 +109,5 @@ libraries = {
 }
 autoplay = "float"
 
+[connection signal="body_entered" from="PickupDetector" to="." method="_on_pickup_detector_body_entered"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
