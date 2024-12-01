@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 # Emitted when the player was hit by a mob.
 signal hit
+# Emitted when the player collides with a pickup
+signal pickup
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -16,7 +18,6 @@ var target_velocity = Vector3.ZERO
 
 func _ready() -> void:
 	print("ready")
-
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -90,7 +91,7 @@ func die():
 
 func _on_mob_detector_body_entered(_body):
 	die()
-	
 
 func _on_pickup_detector_body_entered(_body) -> void:
+	pickup.emit()
 	print ("pickup item detected!")

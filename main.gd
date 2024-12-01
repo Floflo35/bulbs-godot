@@ -21,3 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_bulb_collect_picked() -> void:
 	print("collectible picked up! (main.gd)")
+
+
+func _on_player_pickup() -> void:
+	print("collectible picked up! (main.gd)")
