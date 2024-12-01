@@ -69,7 +69,7 @@ _data = {
 "collectible_idle": SubResource("Animation_h8prr")
 }
 
-[node name="BulbCollect" type="StaticBody3D"]
+[node name="BulbCollect" type="StaticBody3D" groups=["collectibles"]]
 collision_layer = 8
 collision_mask = 0
 input_ray_pickable = false
