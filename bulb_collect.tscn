@@ -81,7 +81,6 @@ script = ExtResource("1_81acf")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Pivot/LightBulbTest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04115, 0)
-visible = false
 light_color = Color(1, 1, 0.447059, 1)
 shadow_enabled = true
 omni_range = 30.0

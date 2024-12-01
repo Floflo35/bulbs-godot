@@ -1,6 +1,6 @@
 extends Node
 
-# Tutorial done!
+# Tutorial done! test
 
 @export var mob_scene: PackedScene
 
@@ -18,10 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# This restarts the current scene.
 		get_tree().reload_current_scene()
 
-
 func _on_bulb_collect_picked() -> void:
-	print("collectible picked up! (main.gd)")
-
+	print("collectible picked up! 1 (main.gd)")
 
 func _on_player_pickup() -> void:
-	print("collectible picked up! (main.gd)")
+	print("collectible picked up! 2 (main.gd)")

@@ -45,25 +45,25 @@ func _physics_process(delta):
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
-	
+
 	# Jumping
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		target_velocity.y = jump_impulse
-	
+
 	# Iterate through all collisions that occurred this frame
 	for index in range(get_slide_collision_count()):
 		# We get one of the collisions with the player
 		var collision = get_slide_collision(index)
-		
+
 		# If the collision is with ground
 		if collision.get_collider() == null:
 			continue
-			
+
 		if collision.get_collider().is_in_group("collectibles"):
 			print("item!")
 			var collectible = collision.get_collider()
 			collectible.pickup()
-			
+
 		# If the collision is with a mob
 		if collision.get_collider().is_in_group("mob"):
 			var mob = collision.get_collider()
@@ -73,16 +73,16 @@ func _physics_process(delta):
 				target_velocity.y = bounce_impulse
 				# Prevent further duplicate calls.
 				break
-				
-		if collision.get_collider().is_in_group("collectible"):
-			#var collectible = collision.get_collider()
-			print("collected")
-			#collectible.pickup()
-	
+
+	#	if collision.get_collider().is_in_group("collectibles"):
+	#		var collectible = collision.get_collider()
+	#		print("collected")
+	#		collectible.pickup()
+
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-	
+
 	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 func die():
