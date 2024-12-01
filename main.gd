@@ -1,6 +1,6 @@
 extends Node
 
-# Tutorial done! test
+# Tutorial done!
 
 @export var mob_scene: PackedScene
 
