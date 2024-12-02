@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmhutk3ybfktt"]
+[gd_scene load_steps=12 format=3 uid="uid://cmhutk3ybfktt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_il7st"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_3p54w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://e2j51kmghb7" path="res://Assets/Materials/Bricks.tres" id="3_kqrpd"]
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="4_wexj8"]
 [ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="5_d5rjx"]
+[ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_pivot.tscn" id="6_5wciv"]
 [ext_resource type="Script" path="res://score_label.gd" id="6_an87r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0132y"]
@@ -16,10 +17,9 @@ size = Vector3(60, 2, 60)
 default_font = ExtResource("5_d5rjx")
 default_font_size = 18
 
-[node name="Main" type="Node" node_paths=PackedStringArray("camera", "player", "camera_position")]
+[node name="Main" type="Node" node_paths=PackedStringArray("player", "camera_position")]
 script = ExtResource("1_il7st")
 mob_scene = ExtResource("2_3p54w")
-camera = NodePath("CameraPivot")
 player = NodePath("Player")
 camera_position = NodePath("ScreenGround2")
 
@@ -36,14 +36,16 @@ visible = false
 [node name="ScreenGround2" parent="." instance=ExtResource("3_b06fo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, -1, 0)
 
-[node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.293, -0.685)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8.88394, 8.91521)
 projection = 1
 size = 19.0
 far = 100.0
+
+[node name="CameraPivot" parent="." instance=ExtResource("6_5wciv")]
+
+[node name="CameraPivot2" parent="." instance=ExtResource("6_5wciv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6035, -1, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_wexj8")]
 
