@@ -4,6 +4,8 @@ extends CharacterBody3D
 signal hit
 # Emitted when the player collides with a pickup
 signal pickup
+#Emitted when the player exits the current screen
+signal out_of_screen
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -95,3 +97,6 @@ func _on_mob_detector_body_entered(_body):
 func _on_pickup_detector_body_entered(_body) -> void:
 	pickup.emit()
 	print ("pickup item detected!")
+
+func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
+	out_of_screen.emit()

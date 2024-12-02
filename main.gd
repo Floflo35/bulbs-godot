@@ -3,6 +3,8 @@ extends Node
 # Tutorial done! test
 
 @export var mob_scene: PackedScene
+@export var camera: Node
+@export var player: Node
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
@@ -23,3 +25,9 @@ func _on_bulb_collect_picked() -> void:
 
 func _on_player_pickup() -> void:
 	print("collectible picked up! 2 (main.gd)")
+
+
+func _on_player_out_of_screen() -> void:
+	if camera != null:
+		camera.set_parent(player)
+	print ("player out of screen")
