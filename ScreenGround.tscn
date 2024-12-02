@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc6fnal522r0l"]
+
+[ext_resource type="Material" uid="uid://dxmh8lwjw6p04" path="res://Assets/Materials/Ground1.tres" id="1_4bwka"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2r2ly"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rwxqd"]
+size = Vector3(60, 2, 60)
+
+[node name="ScreenGround1" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.57, 0, 0, 0, 1, 0, 0, 0, 0.46, 0, 0, 0)
+shape = SubResource("BoxShape3D_2r2ly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.57, 0, 0, 0, 1, 0, 0, 0, 0.46, 0, 0, 0)
+mesh = SubResource("BoxMesh_rwxqd")
+surface_material_override/0 = ExtResource("1_4bwka")

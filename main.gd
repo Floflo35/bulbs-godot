@@ -3,8 +3,10 @@ extends Node
 # Tutorial done! test
 
 @export var mob_scene: PackedScene
-@export var camera: Node
-@export var player: Node
+@export var camera: Node3D
+@export var player: Node3D
+@export var camera_position: Node3D
+var camera_target_position: Transform3D
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
@@ -28,6 +30,6 @@ func _on_player_pickup() -> void:
 
 
 func _on_player_out_of_screen() -> void:
-	if camera != null:
-		camera.set_parent(player)
+	if camera != null && camera_position != null:
+		camera.position = camera_position.position
 	print ("player out of screen")
