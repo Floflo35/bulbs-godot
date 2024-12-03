@@ -1,49 +1,53 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbt5flgiebp7k"]
+[gd_scene load_steps=12 format=3 uid="uid://cmhutk3ybfktt"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_bsovj"]
+[ext_resource type="Material" uid="uid://e2j51kmghb7" path="res://Assets/Materials/Bricks.tres" id="3_3egu1"]
 [ext_resource type="Material" uid="uid://dxmh8lwjw6p04" path="res://Assets/Materials/Ground1.tres" id="3_tmcdt"]
 [ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="4_yet0a"]
 [ext_resource type="Script" path="res://score_label.gd" id="5_1i7ir"]
-[ext_resource type="PackedScene" uid="uid://011v7mkeegm5" path="res://bulb_collect.tscn" id="7_k0c7v"]
+[ext_resource type="PackedScene" uid="uid://cc6fnal522r0l" path="res://ScreenGround.tscn" id="5_g45eu"]
+[ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_pivot.tscn" id="6_at116"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2r2ly"]
-size = Vector3(60, 2, 60)
-
-[sub_resource type="BoxMesh" id="BoxMesh_rwxqd"]
+[sub_resource type="BoxMesh" id="BoxMesh_0132y"]
 size = Vector3(60, 2, 60)
 
 [sub_resource type="Theme" id="Theme_sktml"]
 default_font = ExtResource("4_yet0a")
 default_font_size = 18
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("player", "camera_position")]
 script = ExtResource("1_65fke")
 mob_scene = ExtResource("2_bsovj")
+player = NodePath("Player")
+camera_position = NodePath("ScreenGround2")
 
-[node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_2r2ly")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_rwxqd")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.57, 0, 0, 0, 1, 0, 0, 0, 0.46, 0, -1, 0)
+material_override = ExtResource("3_3egu1")
+mesh = SubResource("BoxMesh_0132y")
+skeleton = NodePath("../ScreenGround1")
 surface_material_override/0 = ExtResource("3_tmcdt")
 
-[node name="Player" parent="." instance=ExtResource("1_0qx0n")]
+[node name="ScreenGround1" parent="." instance=ExtResource("5_g45eu")]
+visible = false
 
-[node name="CameraPivot" type="Marker3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0)
+[node name="ScreenGround2" parent="." instance=ExtResource("5_g45eu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, -1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.2934, 0)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8.88394, 8.91521)
 projection = 1
 size = 19.0
 far = 100.0
+
+[node name="CameraPivot" parent="." instance=ExtResource("6_at116")]
+
+[node name="CameraPivot2" parent="." instance=ExtResource("6_at116")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6035, -1, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_0qx0n")]
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -88,14 +92,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Press Enter to retry"
 
-[node name="BulbCollect" parent="." instance=ExtResource("7_k0c7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.35159)
-
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
-[node name="Mob" parent="." instance=ExtResource("2_bsovj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09607, 0, 6.60069)
-
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="out_of_screen" from="Player" to="." method="_on_player_out_of_screen"]
 [connection signal="pickup" from="Player" to="." method="_on_player_pickup"]
-[connection signal="picked" from="BulbCollect" to="." method="_on_bulb_collect_picked"]
