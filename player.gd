@@ -79,7 +79,7 @@ func _physics_process(delta):
 				break
 				
 		if collision.get_collider().is_in_group("camera-zones"):
-			print("player: camera zone collision")
+			# print("player: camera zone collision")
 			break
 		
 
