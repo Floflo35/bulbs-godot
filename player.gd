@@ -6,6 +6,8 @@ signal hit
 signal pickup
 #Emitted when the player exits the current screen
 signal out_of_screen
+#Emitted when the camera has to change screens
+signal change_screen
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -78,9 +80,9 @@ func _physics_process(delta):
 				# Prevent further duplicate calls.
 				break
 				
-		if collision.get_collider().is_in_group("camera-zones"):
+		# if collision.get_collider().is_in_group("camera-zones"):
 			# print("player: camera zone collision")
-			break
+			# break
 		
 
 	#	if collision.get_collider().is_in_group("collectibles"):
@@ -109,5 +111,7 @@ func _on_pickup_detector_body_entered(_body) -> void:
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	out_of_screen.emit()
 
+# I need a signal when the player enters a new camera zone, but it doesn't work for now...
 func _on_camera_zone_detector_body_entered(body: Node3D) -> void:
+	change_screen.emit()
 	print("player: camera zone entered")

@@ -28,7 +28,8 @@ surface_material_override/0 = ExtResource("1_4bwka")
 [node name="Area3D" type="Area3D" parent="." groups=["camera-zones"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 16
+collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96582, 0)
 shape = SubResource("BoxShape3D_vkuyl")
