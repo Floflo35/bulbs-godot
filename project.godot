@@ -28,7 +28,7 @@ window/vsync/vsync_mode=0
 
 [global_group]
 
-"camera pivots"=""
+camera-zones=""
 
 [input]
 
@@ -64,4 +64,4 @@ jump={
 3d_physics/layer_2="enemies"
 3d_physics/layer_3="world"
 3d_physics/layer_4="collectibles"
-3d_physics/layer_5="camera pivots"
+3d_physics/layer_5="camera zones"

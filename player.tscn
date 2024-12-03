@@ -111,6 +111,16 @@ autoplay = "float"
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
+[node name="CameraZoneDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZoneDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.909658, 0)
+shape = SubResource("CylinderShape3D_iqpok")
+
 [connection signal="body_entered" from="PickupDetector" to="." method="_on_pickup_detector_body_entered"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="CameraZoneDetector" to="." method="_on_camera_zone_detector_body_entered"]

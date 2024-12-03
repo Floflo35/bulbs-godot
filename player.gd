@@ -61,10 +61,12 @@ func _physics_process(delta):
 		if collision.get_collider() == null:
 			continue
 
+		# If the collision is with a collectible item
 		if collision.get_collider().is_in_group("collectibles"):
 			print("item!")
 			var collectible = collision.get_collider()
 			collectible.pickup()
+			break
 
 		# If the collision is with a mob
 		if collision.get_collider().is_in_group("mob"):
@@ -75,6 +77,11 @@ func _physics_process(delta):
 				target_velocity.y = bounce_impulse
 				# Prevent further duplicate calls.
 				break
+				
+		if collision.get_collider().is_in_group("camera-zones"):
+			print("player: camera zone collision")
+			break
+		
 
 	#	if collision.get_collider().is_in_group("collectibles"):
 	#		var collectible = collision.get_collider()
@@ -92,11 +99,15 @@ func die():
 	queue_free()
 
 func _on_mob_detector_body_entered(_body):
+	print("player: mob detected")
 	die()
 
 func _on_pickup_detector_body_entered(_body) -> void:
 	pickup.emit()
-	print ("pickup item detected!")
+	print ("player: pickup item detected!")
 
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	out_of_screen.emit()
+
+func _on_camera_zone_detector_body_entered(body: Node3D) -> void:
+	print("player: camera zone entered")
