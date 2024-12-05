@@ -10,7 +10,7 @@ var camera_target_position: Transform3D
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
-	print("main ready")
+	# print("main ready")
 
 func _on_player_hit() -> void:
 	#$MobTimer.stop()

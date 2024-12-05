@@ -1,14 +1,17 @@
 extends StaticBody3D
 
+signal camera_move
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# if self.name != null:
+	if self.name != null:
 		# print("Camera pivot: ", self.name, " started to exist")
-		# print("Coordinates: x=", round(self.position.x), " y=", round(self.position.y), " z=", round(self.position.z))
+		print("Camera pivot ready in: x=", round(self.position.x), " y=", round(self.position.y), " z=", round(self.position.z))
 	pass
-
+	
+func switch_pivot() -> void:
+	camera_move.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta) -> void:
 	pass

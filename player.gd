@@ -3,9 +3,9 @@ extends CharacterBody3D
 # Emitted when the player was hit by a mob.
 signal hit
 # Emitted when the player collides with a pickup
-signal pickup
+# signal pickup
 #Emitted when the player exits the current screen
-signal out_of_screen
+# signal out_of_screen
 #Emitted when the camera has to change screens
 signal change_screen
 
@@ -17,11 +17,14 @@ signal change_screen
 @export var jump_impulse = 20
 # Same thing but when the player bounces on monsters
 @export var bounce_impulse = 16
+# Current camera pivot the camera is attached to
+var current_camera_position
 
 var target_velocity = Vector3.ZERO
 
 func _ready() -> void:
-	print("ready")
+	# print("player: ready")
+	pass
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -80,10 +83,9 @@ func _physics_process(delta):
 				# Prevent further duplicate calls.
 				break
 				
-		# if collision.get_collider().is_in_group("camera-zones"):
-			# print("player: camera zone collision")
-			# break
-		
+		if collision.get_collider().is_in_group("camera-zones"):
+			var camera_pivot = collision.get_collider().position
+			print("current camera pivot: ", camera_pivot)
 
 	#	if collision.get_collider().is_in_group("collectibles"):
 	#		var collectible = collision.get_collider()
@@ -104,14 +106,14 @@ func _on_mob_detector_body_entered(_body):
 	print("player: mob detected")
 	die()
 
-func _on_pickup_detector_body_entered(_body) -> void:
-	pickup.emit()
-	print ("player: pickup item detected!")
+# func _on_pickup_detector_body_entered(_body) -> void:
+# 	pickup.emit()
+# 	print ("player: pickup item detected!")
 
-func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
-	out_of_screen.emit()
+# func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
+# 	out_of_screen.emit()
 
 # I need a signal when the player enters a new camera zone, but it doesn't work for now...
-func _on_camera_zone_detector_body_entered(body: Node3D) -> void:
+func _on_camera_zone_detector_body_entered(_body) -> void:
 	change_screen.emit()
 	print("player: camera zone entered")
