@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bqbasplvvclj5"]
 
-[ext_resource type="Script" path="res://camera_pivot.gd" id="1_odmm4"]
+[ext_resource type="Script" path="res://camera_zone.gd" id="1_odmm4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1yvb5"]
 size = Vector3(16, 10, 9)
 
-[node name="CameraPivot" type="StaticBody3D"]
+[node name="CameraZone" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 collision_layer = 16
 input_ray_pickable = false

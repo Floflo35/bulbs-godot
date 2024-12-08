@@ -1,17 +1,29 @@
 extends StaticBody3D
 
-signal camera_move
+@export var speed: float = 10
+var target_coordinates
+var direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if self.name != null:
-		# print("Camera pivot: ", self.name, " started to exist")
-		print("Camera pivot ready in: x=", round(self.position.x), " y=", round(self.position.y), " z=", round(self.position.z))
-	pass
-	
-func switch_pivot() -> void:
-	camera_move.emit()
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta) -> void:
-	pass
+func _process(delta: float) -> void:
+	if direction != Vector3.ZERO:
+		# Move the camera in the direction of the new camera pivot
+		print("camera moving")
+		direction = (target_coordinates - position).normalized()
+		print("camera direction = ", direction)
+		position += (direction * speed * delta)
+		print("camera position = ", position)
+	
+
+
+func _on_player_camera_screen(target_position: Variant) -> void:
+	if target_position != Vector3.ZERO:
+		target_coordinates = target_position
+		print("bop ", target_position.x, " ", target_position.z)
+		print("bip ", self.position.x, " ", self.position.z)
+		# direction = (target_position - position).normalized()
