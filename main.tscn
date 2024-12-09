@@ -18,7 +18,7 @@ default_font_size = 18
 [sub_resource type="BoxMesh" id="BoxMesh_3dwf7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2n7l2"]
-size = Vector3(43, 16, 33)
+size = Vector3(43, 1, 35)
 
 [node name="Main" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_65fke")
@@ -30,14 +30,15 @@ script = ExtResource("7_tdcy0")
 speed = 100.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 22.4748, 23.6013)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 23.6937, 23.6013)
 projection = 1
+current = true
 size = 24.357
 near = 0.061
 far = 100.0
 
 [node name="Player" parent="." instance=ExtResource("1_0qx0n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33573, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.363927, 0)
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -101,7 +102,7 @@ skeleton = NodePath("../Ground")
 surface_material_override/0 = ExtResource("9_3jpmp")
 
 [node name="Ground" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
 [node name="Ground2" type="StaticBody3D" parent="."]
@@ -119,14 +120,33 @@ surface_material_override/0 = ExtResource("9_3jpmp")
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
+[node name="Ground3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 36)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground3"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+material_override = ExtResource("9_a2nbx")
+mesh = SubResource("BoxMesh_3dwf7")
+skeleton = NodePath("../Ground")
+surface_material_override/0 = ExtResource("9_3jpmp")
+
+[node name="Ground" type="CollisionShape3D" parent="Ground3"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+shape = SubResource("BoxShape3D_2n7l2")
+
 [node name="Camera Screens" type="Node" parent="." groups=["camera-zones"]]
 
 [node name="CameraZone" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
+
+[node name="CameraZone3" parent="Camera Screens" instance=ExtResource("9_11bpo")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 36)
 
 [node name="CameraZone2" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="camera_move" from="Camera Screens/CameraZone3" to="CameraPivot" method="_on_camera_zone_camera_move"]
 [connection signal="camera_move" from="Camera Screens/CameraZone2" to="CameraPivot" method="_on_camera_zone_camera_move"]

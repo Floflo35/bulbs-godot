@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://camera_zone.gd" id="1_odmm4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1yvb5"]
-size = Vector3(18, 10, 13)
+size = Vector3(18, 10, 15)
 
 [node name="CameraZone" type="Area3D" groups=["camera-zones"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
