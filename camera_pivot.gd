@@ -1,10 +1,10 @@
 extends Node3D
 
 @export var speed: float = 10
-var target_coordinates
+var target_coordinates = Vector3.ZERO
 var direction
 var distance_to_target
-var camera_moving = true
+var camera_moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 			camera_moving = false
 	
 
-
+# When the player goes to a different screen
 func _on_player_camera_screen(target_position: Variant) -> void:
 	if target_position != Vector3.ZERO:
 		target_coordinates = target_position
