@@ -1,19 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmhutk3ybfktt"]
+[gd_scene load_steps=11 format=3 uid="uid://cmhutk3ybfktt"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_bsovj"]
-[ext_resource type="Material" uid="uid://e2j51kmghb7" path="res://Assets/Materials/Bricks.tres" id="3_3egu1"]
-[ext_resource type="Material" uid="uid://dxmh8lwjw6p04" path="res://Assets/Materials/Ground1.tres" id="3_tmcdt"]
 [ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="4_yet0a"]
 [ext_resource type="Script" path="res://score_label.gd" id="5_1i7ir"]
 [ext_resource type="PackedScene" uid="uid://cc6fnal522r0l" path="res://ScreenGround.tscn" id="5_g45eu"]
 [ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="6_at116"]
 [ext_resource type="PackedScene" uid="uid://011v7mkeegm5" path="res://bulb_collect.tscn" id="7_k0c7v"]
 [ext_resource type="Script" path="res://camera_pivot.gd" id="7_tdcy0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_0132y"]
-size = Vector3(60, 2, 60)
 
 [sub_resource type="Theme" id="Theme_sktml"]
 default_font = ExtResource("4_yet0a")
@@ -24,13 +19,6 @@ script = ExtResource("1_65fke")
 mob_scene = ExtResource("2_bsovj")
 player = NodePath("Player")
 camera_position = NodePath("ScreenGround2")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.57, 0, 0, 0, 1, 0, 0, 0, 0.46, 0, -1, 0)
-material_override = ExtResource("3_3egu1")
-mesh = SubResource("BoxMesh_0132y")
-skeleton = NodePath("../ScreenGround1")
-surface_material_override/0 = ExtResource("3_tmcdt")
 
 [node name="ScreenGround1" parent="." instance=ExtResource("5_g45eu")]
 
@@ -43,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, -1, 0)
 [node name="CameraZone" parent="ScreenGround2" instance=ExtResource("6_at116")]
 transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0, 3.55147, 0)
 
-[node name="CameraPivot" type="StaticBody3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("7_tdcy0")
 speed = 100.0
 
