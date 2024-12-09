@@ -23,10 +23,9 @@ func _process(delta: float) -> void:
 		else:
 			position = target_coordinates
 			camera_moving = false
-	
 
-# When the player goes to a different screen
-func _on_player_camera_screen(target_position: Variant) -> void:
+# When a camera zone is triggered by the player
+func _on_camera_zone_camera_move(target_position: Variant) -> void:
 	if target_position != Vector3.ZERO:
 		target_coordinates = target_position
 		camera_moving = true

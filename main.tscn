@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmhutk3ybfktt"]
+[gd_scene load_steps=14 format=3 uid="uid://cmhutk3ybfktt"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://camera_pivot.gd" id="7_tdcy0"]
 [ext_resource type="Material" uid="uid://e2j51kmghb7" path="res://Assets/Materials/Bricks.tres" id="9_3jpmp"]
 [ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="9_11bpo"]
+[ext_resource type="Material" uid="uid://dxmh8lwjw6p04" path="res://Assets/Materials/Ground1.tres" id="9_a2nbx"]
 
 [sub_resource type="Theme" id="Theme_sktml"]
 default_font = ExtResource("4_yet0a")
@@ -36,6 +37,7 @@ near = 0.061
 far = 100.0
 
 [node name="Player" parent="." instance=ExtResource("1_0qx0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33573, 0)
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -84,7 +86,6 @@ text = "Press Enter to retry"
 
 [node name="Mob" parent="." instance=ExtResource("2_bsovj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74698, 0, 3.51903)
-visible = false
 
 [node name="BulbCollect" parent="." instance=ExtResource("7_k0c7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.9539, 0, 1.56701)
@@ -109,6 +110,7 @@ collision_layer = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+material_override = ExtResource("9_a2nbx")
 mesh = SubResource("BoxMesh_3dwf7")
 skeleton = NodePath("../Ground")
 surface_material_override/0 = ExtResource("9_3jpmp")
@@ -125,5 +127,6 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
 [node name="CameraZone2" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
 
-[connection signal="camera_screen" from="Player" to="CameraPivot" method="_on_player_camera_screen"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="camera_move" from="Camera Screens/CameraZone2" to="CameraPivot" method="_on_camera_zone_camera_move"]

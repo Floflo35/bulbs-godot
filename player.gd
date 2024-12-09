@@ -77,15 +77,6 @@ func _physics_process(delta):
 				target_velocity.y = bounce_impulse
 				# Prevent further duplicate calls.
 				break
-				
-		if collision.get_collider().is_in_group("camera-zones"):
-			var camera_pivot = collision.get_collider().position
-			print("player: camera zone collision")
-			# print("current camera pivot: ", camera_pivot)
-			if camera_position != camera_pivot:
-				camera_position = camera_pivot
-				print ("new camera pivot: ", camera_pivot)
-				camera_screen.emit(camera_position)
 	
 
 	# Moving the Character
@@ -101,3 +92,7 @@ func die():
 func _on_mob_detector_body_entered(_body):
 	print("player: mob detected")
 	die()
+
+
+func _on_camera_zone_detector_body_entered(body: Node3D) -> void:
+	print("player: _on_camera_zone_detector_body_entered")
