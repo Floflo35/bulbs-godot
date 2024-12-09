@@ -80,12 +80,13 @@ func _physics_process(delta):
 				
 		if collision.get_collider().is_in_group("camera-zones"):
 			var camera_pivot = collision.get_collider().position
+			print("player: camera zone collision")
 			# print("current camera pivot: ", camera_pivot)
 			if camera_position != camera_pivot:
 				camera_position = camera_pivot
 				print ("new camera pivot: ", camera_pivot)
 				camera_screen.emit(camera_position)
-				
+	
 
 	# Moving the Character
 	velocity = target_velocity

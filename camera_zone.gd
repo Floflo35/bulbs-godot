@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends Area3D
 
 signal camera_move
 
@@ -10,6 +10,7 @@ func _ready() -> void:
 	pass
 	
 func switch_pivot() -> void:
+	print("camera_zone switch pivot")
 	camera_move.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
