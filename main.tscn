@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmhutk3ybfktt"]
+[gd_scene load_steps=17 format=3 uid="uid://cmhutk3ybfktt"]
 
 [ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="1_0qx0n"]
 [ext_resource type="Script" path="res://main.gd" id="1_65fke"]
@@ -19,6 +19,19 @@ default_font_size = 18
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2n7l2"]
 size = Vector3(43, 1, 35)
+
+[sub_resource type="Sky" id="Sky_i6wah"]
+
+[sub_resource type="Environment" id="Environment_v5wp5"]
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_i6wah")
+ssao_enabled = true
+fog_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 0.88
+adjustment_saturation = 6.33
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kv77n"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_65fke")
@@ -86,10 +99,10 @@ text = "Press Enter to retry"
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
 [node name="Mob" parent="." instance=ExtResource("2_bsovj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74698, 0, 3.51903)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.747, -0.275, 3.519)
 
 [node name="BulbCollect" parent="." instance=ExtResource("7_k0c7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.9539, 0, 1.56701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73343, 0, -8.09623)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -145,6 +158,10 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 36)
 
 [node name="CameraZone2" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v5wp5")
+camera_attributes = SubResource("CameraAttributesPractical_kv77n")
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
