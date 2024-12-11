@@ -2,8 +2,6 @@ extends CharacterBody3D
 
 # Emitted when the player was hit by a mob.
 signal hit
-# Emitted when the player changes screen, so the camera can move
-signal camera_screen(camera_position)
 
 # How fast the player moves in meters per second.
 @export var speed = 14

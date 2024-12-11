@@ -14,10 +14,5 @@ func switch_pivot() -> void:
 func _process(_delta) -> void:
 	pass
 
-
-func _on_player_camera_screen(current_camera_position: Variant) -> void:
-	pass # Replace with function body.
-
-
 func _on_body_entered(body: Node3D) -> void:
 	camera_move.emit(self.position)

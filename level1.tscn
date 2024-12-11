@@ -1,0 +1,158 @@
+[gd_scene load_steps=18 format=3 uid="uid://blsn7u8q3ee5l"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_28g6e"]
+[ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_tso63"]
+[ext_resource type="Script" path="res://camera_pivot.gd" id="3_dlo63"]
+[ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="4_71mtq"]
+[ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="5_itddm"]
+[ext_resource type="Script" path="res://score_label.gd" id="6_hdw85"]
+[ext_resource type="Texture2D" uid="uid://dah2k1qblqhye" path="res://Assets/Placeholders/1-1.jpg" id="7_v77cc"]
+[ext_resource type="Texture2D" uid="uid://cvhw4os2lo5es" path="res://Assets/Placeholders/1-2.jpg" id="8_jtg2w"]
+[ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="10_gsj8o"]
+
+[sub_resource type="Theme" id="Theme_sktml"]
+default_font = ExtResource("5_itddm")
+default_font_size = 18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3gvq"]
+albedo_texture = ExtResource("7_v77cc")
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(0.34, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3dwf7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2n7l2"]
+size = Vector3(43, 1, 35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqjxh"]
+albedo_texture = ExtResource("8_jtg2w")
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(0.34, 0, 0)
+
+[sub_resource type="Environment" id="Environment_vw5p6"]
+ambient_light_source = 1
+ambient_light_energy = 0.0
+ssao_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yy1oy"]
+auto_exposure_enabled = true
+
+[sub_resource type="Compositor" id="Compositor_7ac00"]
+
+[node name="Level1" type="Node" node_paths=PackedStringArray("player")]
+script = ExtResource("1_28g6e")
+mob_scene = ExtResource("2_tso63")
+player = NodePath("Player")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("3_dlo63")
+speed = 100.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 23.6937, 23.6013)
+projection = 1
+current = true
+size = 24.357
+near = 0.061
+far = 100.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.621148, 0.783693, 0, -0.783693, -0.621148, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="Player" parent="." instance=ExtResource("4_71mtq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.363927, 0)
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sktml")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 76.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Score: 0"
+script = ExtResource("6_hdw85")
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -11.5
+offset_right = 88.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Enter to retry"
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+
+[node name="Mob" parent="." instance=ExtResource("2_tso63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.747, -0.275, 3.519)
+
+[node name="Ground3" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground3"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_l3gvq")
+mesh = SubResource("BoxMesh_3dwf7")
+skeleton = NodePath("")
+
+[node name="Ground" type="CollisionShape3D" parent="Ground3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
+shape = SubResource("BoxShape3D_2n7l2")
+
+[node name="Ground2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, -1, 0)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cqjxh")
+mesh = SubResource("BoxMesh_3dwf7")
+skeleton = NodePath("")
+
+[node name="Ground" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
+shape = SubResource("BoxShape3D_2n7l2")
+
+[node name="Camera Screens" type="Node" parent="." groups=["camera-zones"]]
+
+[node name="CameraZone" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
+
+[node name="CameraZone2" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vw5p6")
+camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
+compositor = SubResource("Compositor_7ac00")
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="camera_move" from="Camera Screens/CameraZone2" to="CameraPivot" method="_on_camera_zone_camera_move"]
