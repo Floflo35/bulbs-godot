@@ -86,5 +86,13 @@ func die():
 	hit.emit()
 	queue_free()
 
-func _on_mob_detector_body_entered(_body):
+
+
+func _on_hurt_detector_body_entered(body: Node3D) -> void:
+	print("player: hurt detector, you die because of body ", body.name)
+	die()
+
+
+func _on_hurt_detector_area_entered(area: Area3D) -> void:
+	print("player: hurt detector, you die because of area ", area.name)
 	die()

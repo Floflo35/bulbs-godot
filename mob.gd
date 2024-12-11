@@ -30,6 +30,7 @@ func initialize(start_position, player_position):
 	
 	$AnimationPlayer.speed_scale = float(2) * random_speed / (min_speed + max_speed)
 
+# When the mob gets out of the screen, it is destroyed
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	queue_free()
 

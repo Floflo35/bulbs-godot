@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://blsn7u8q3ee5l"]
+[gd_scene load_steps=19 format=3 uid="uid://blsn7u8q3ee5l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_28g6e"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_tso63"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dah2k1qblqhye" path="res://Assets/Placeholders/1-1.jpg" id="7_v77cc"]
 [ext_resource type="Texture2D" uid="uid://cvhw4os2lo5es" path="res://Assets/Placeholders/1-2.jpg" id="8_jtg2w"]
 [ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="10_gsj8o"]
+[ext_resource type="PackedScene" uid="uid://br5mrgce1kv5g" path="res://water.tscn" id="10_ynmi6"]
 
 [sub_resource type="Theme" id="Theme_sktml"]
 default_font = ExtResource("5_itddm")
@@ -152,6 +153,11 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
 environment = SubResource("Environment_vw5p6")
 camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
 compositor = SubResource("Compositor_7ac00")
+
+[node name="Water" parent="." instance=ExtResource("10_ynmi6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
+
+[node name="WaterZones" type="Node" parent="."]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]

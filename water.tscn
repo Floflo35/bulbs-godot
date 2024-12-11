@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://br5mrgce1kv5g"]
+
+[ext_resource type="Script" path="res://water.gd" id="1_dwto1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w1una"]
+radius = 4.0
+
+[node name="Water" type="Area3D" groups=["water"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_dwto1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_w1una")

@@ -14,5 +14,5 @@ func switch_pivot() -> void:
 func _process(_delta) -> void:
 	pass
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(_body) -> void:
 	camera_move.emit(self.position)

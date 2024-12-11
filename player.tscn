@@ -77,7 +77,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 30
+collision_mask = 60
 script = ExtResource("1_fiv4h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -98,12 +98,12 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.909658, 0)
 shape = SubResource("CylinderShape3D_84rte")
 
-[node name="MobDetector" type="Area3D" parent="."]
+[node name="HurtDetector" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.909658, 0)
 shape = SubResource("CylinderShape3D_iqpok")
 
@@ -116,5 +116,6 @@ autoplay = "float"
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
 [connection signal="body_entered" from="PickupDetector" to="." method="_on_pickup_detector_body_entered"]
-[connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
+[connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
+[connection signal="body_entered" from="HurtDetector" to="." method="_on_hurt_detector_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
