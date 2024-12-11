@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 		# Move the camera in the direction of the new camera pivot
 		direction = (target_coordinates - position).normalized()
 		distance_to_target = (target_coordinates - position).length()
-		print("distance = ", distance_to_target)
 		if distance_to_target > 1:
 			position += (direction * speed * delta)
 		else:

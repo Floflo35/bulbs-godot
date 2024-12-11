@@ -4,9 +4,6 @@ signal camera_move
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if self.name != null:
-		# print("Camera pivot: ", self.name, " started to exist")
-		print("Camera pivot ready in: x=", round(self.position.x), " y=", round(self.position.y), " z=", round(self.position.z))
 	pass
 	
 func switch_pivot() -> void:
@@ -23,5 +20,4 @@ func _on_player_camera_screen(current_camera_position: Variant) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print("camera_zone body entered, x=", self.position.x, " z=", self.position.z)
 	camera_move.emit(self.position)

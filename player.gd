@@ -63,7 +63,6 @@ func _physics_process(delta):
 
 		# If the collision is with a collectible item
 		if collision.get_collider().is_in_group("collectibles"):
-			print("item!")
 			var collectible = collision.get_collider()
 			collectible.pickup()
 			break
@@ -90,9 +89,4 @@ func die():
 	queue_free()
 
 func _on_mob_detector_body_entered(_body):
-	print("player: mob detected")
 	die()
-
-
-func _on_camera_zone_detector_body_entered(body: Node3D) -> void:
-	print("player: _on_camera_zone_detector_body_entered")

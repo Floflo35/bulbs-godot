@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xii8vo72r3a8"]
+[gd_scene load_steps=9 format=3 uid="uid://xii8vo72r3a8"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_fiv4h"]
 [ext_resource type="PackedScene" uid="uid://cgrughi8n5pmj" path="res://Misc/TutoArchive/art/player.glb" id="1_g7kyt"]
@@ -76,10 +76,6 @@ _data = {
 "float": SubResource("Animation_wvbmu")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_kq7q2"]
-height = 2.005
-radius = 1.54
-
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 30
 script = ExtResource("1_fiv4h")
@@ -119,14 +115,6 @@ autoplay = "float"
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
-[node name="CameraZoneDetector" type="Area3D" parent="."]
-collision_mask = 16
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZoneDetector"]
-shape = SubResource("CylinderShape3D_kq7q2")
-
 [connection signal="body_entered" from="PickupDetector" to="." method="_on_pickup_detector_body_entered"]
 [connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
-[connection signal="body_entered" from="CameraZoneDetector" to="." method="_on_camera_zone_detector_body_entered"]

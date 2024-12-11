@@ -118,6 +118,20 @@ surface_material_override/0 = ExtResource("9_3jpmp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
+[node name="Ground4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -36)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground4"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+mesh = SubResource("BoxMesh_3dwf7")
+skeleton = NodePath("../Ground")
+surface_material_override/0 = ExtResource("9_3jpmp")
+
+[node name="Ground" type="CollisionShape3D" parent="Ground4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
+shape = SubResource("BoxShape3D_2n7l2")
+
 [node name="Ground2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, -1, 0)
 collision_layer = 4
@@ -148,10 +162,31 @@ surface_material_override/0 = ExtResource("9_3jpmp")
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
+[node name="Ground5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, -1, 0)
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground5"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+material_override = ExtResource("9_a2nbx")
+mesh = SubResource("BoxMesh_3dwf7")
+skeleton = NodePath("../Ground")
+surface_material_override/0 = ExtResource("9_3jpmp")
+
+[node name="Ground" type="CollisionShape3D" parent="Ground5"]
+transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+shape = SubResource("BoxShape3D_2n7l2")
+
 [node name="Camera Screens" type="Node" parent="." groups=["camera-zones"]]
 
 [node name="CameraZone" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
+
+[node name="CameraZone4" parent="Camera Screens" instance=ExtResource("9_11bpo")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, -36)
+
+[node name="CameraZone5" parent="Camera Screens" instance=ExtResource("9_11bpo")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, -44, -1, 0)
 
 [node name="CameraZone3" parent="Camera Screens" instance=ExtResource("9_11bpo")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 36)
@@ -165,5 +200,7 @@ camera_attributes = SubResource("CameraAttributesPractical_kv77n")
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="camera_move" from="Camera Screens/CameraZone4" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="camera_move" from="Camera Screens/CameraZone5" to="CameraPivot" method="_on_camera_zone_camera_move"]
 [connection signal="camera_move" from="Camera Screens/CameraZone3" to="CameraPivot" method="_on_camera_zone_camera_move"]
 [connection signal="camera_move" from="Camera Screens/CameraZone2" to="CameraPivot" method="_on_camera_zone_camera_move"]
