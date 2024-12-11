@@ -8,5 +8,6 @@ subdivide_depth = 200
 orientation = 1
 
 [node name="WaterPlane" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00016284, -0.00127223, 0.0013079)
 mesh = SubResource("QuadMesh_76rxw")
 surface_material_override/0 = ExtResource("1_eccgu")

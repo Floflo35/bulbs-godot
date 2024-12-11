@@ -5,6 +5,9 @@ uniform float metallic : hint_range(0.0, 1.0) = 0;
 uniform float roughness : hint_range(0.0, 1.0) = 0.02;
 uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
+uniform vec2 wave_direction0 = vec2(2.0, 0.0);
+uniform vec2 wave_direction1 = vec2(0.0, 1.0);
+uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -12,9 +15,15 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
+	vec2 time0 = (TIME * wave_direction0) * time_scale; // Movement rate of first wave
+	vec2 time1 = (TIME * wave_direction1) * time_scale; // Movement rate of second wave
+	// vec3 normal = texture(texture_normal,UV).rgb;
+	vec3 normal_blend = mix(texture(texture_normal, UV + time0).rgb, texture(texture_normal2, UV + time1).rgb, 0.5);
+	
 	ALBEDO = vec3(0, 0, 0);
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
+	NORMAL_MAP = normal_blend;
 }
 
 //void light() {

@@ -154,10 +154,10 @@ environment = SubResource("Environment_vw5p6")
 camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
 compositor = SubResource("Compositor_7ac00")
 
-[node name="Water" parent="." instance=ExtResource("10_ynmi6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
-
 [node name="WaterZones" type="Node" parent="."]
+
+[node name="Water" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
