@@ -110,9 +110,6 @@ text = "Press Enter to retry"
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
-[node name="Mob" parent="." instance=ExtResource("2_tso63")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.747, -0.275, 3.519)
-
 [node name="Ground3" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 collision_layer = 4
