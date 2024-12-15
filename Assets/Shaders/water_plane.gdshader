@@ -19,7 +19,7 @@ void fragment() {
 	vec2 time1 = (TIME * wave_direction1) * time_scale; // Movement rate of second wave
 	// vec3 normal = texture(texture_normal,UV).rgb;
 	vec3 normal_blend = mix(texture(texture_normal, UV + time0).rgb, texture(texture_normal2, UV + time1).rgb, 0.5);
-	
+
 	ALBEDO = vec3(0, 0, 0);
 	METALLIC = metallic;
 	ROUGHNESS = roughness;

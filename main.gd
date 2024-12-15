@@ -6,10 +6,17 @@ extends Node
 @export var camera: Node3D
 @export var player: Node3D
 @export var camera_position: Node3D
+
+# Light settings
+@export var world_environment: WorldEnvironment
+@export var day_exposure = 1
+@export var night_exposure = 0
+
 var camera_target_position: Transform3D
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
+	world_environment.environment.tonemap_exposure = day_exposure
 	# print("main ready")
 
 func _on_player_hit() -> void:
@@ -22,14 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# This restarts the current scene.
 		get_tree().reload_current_scene()
 
+
 func _on_bulb_collect_picked() -> void:
-	print("collectible picked up! 1 (main.gd)")
-
-func _on_player_pickup() -> void:
-	print("collectible picked up! 2 (main.gd)")
-
-
-func _on_player_out_of_screen() -> void:
-	if camera != null && camera_position != null:
-		camera.position = camera_position.position
-	print ("player out of screen")
+	print("main: pickup collected")
+	world_environment.environment.tonemap_exposure = night_exposure

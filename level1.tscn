@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://blsn7u8q3ee5l"]
+[gd_scene load_steps=20 format=3 uid="uid://blsn7u8q3ee5l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_28g6e"]
 [ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_tso63"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://score_label.gd" id="6_hdw85"]
 [ext_resource type="Texture2D" uid="uid://dah2k1qblqhye" path="res://Assets/Placeholders/1-1.jpg" id="7_v77cc"]
 [ext_resource type="Texture2D" uid="uid://cvhw4os2lo5es" path="res://Assets/Placeholders/1-2.jpg" id="8_jtg2w"]
+[ext_resource type="Environment" uid="uid://pnoy7opvunf" path="res://day_environment.tres" id="10_42smx"]
 [ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="10_gsj8o"]
 [ext_resource type="PackedScene" uid="uid://br5mrgce1kv5g" path="res://water.tscn" id="10_ynmi6"]
+[ext_resource type="PackedScene" uid="uid://dlo6fdmemjnxe" path="res://bulb_collect2.tscn" id="11_uw1rk"]
 
 [sub_resource type="Theme" id="Theme_sktml"]
 default_font = ExtResource("5_itddm")
@@ -30,20 +32,16 @@ albedo_texture = ExtResource("8_jtg2w")
 uv1_scale = Vector3(2, 2, 2)
 uv1_offset = Vector3(0.34, 0, 0)
 
-[sub_resource type="Environment" id="Environment_vw5p6"]
-ambient_light_source = 1
-ambient_light_energy = 0.0
-ssao_enabled = true
-
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yy1oy"]
 auto_exposure_enabled = true
 
 [sub_resource type="Compositor" id="Compositor_7ac00"]
 
-[node name="Level1" type="Node" node_paths=PackedStringArray("player")]
+[node name="Level1" type="Node" node_paths=PackedStringArray("player", "world_environment")]
 script = ExtResource("1_28g6e")
 mob_scene = ExtResource("2_tso63")
 player = NodePath("Player")
+world_environment = NodePath("WorldEnvironment")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("3_dlo63")
@@ -63,7 +61,7 @@ shadow_enabled = true
 directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("4_71mtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.363927, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.24, -0.364, 8.01)
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -110,31 +108,33 @@ text = "Press Enter to retry"
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 
-[node name="Ground3" type="StaticBody3D" parent="."]
+[node name="Ground&Walls" type="Node" parent="."]
+
+[node name="Ground3" type="StaticBody3D" parent="Ground&Walls"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 collision_layer = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground&Walls/Ground3"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_l3gvq")
 mesh = SubResource("BoxMesh_3dwf7")
 skeleton = NodePath("")
 
-[node name="Ground" type="CollisionShape3D" parent="Ground3"]
+[node name="Ground" type="CollisionShape3D" parent="Ground&Walls/Ground3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
-[node name="Ground2" type="StaticBody3D" parent="."]
+[node name="Ground2" type="StaticBody3D" parent="Ground&Walls"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, -1, 0)
 collision_layer = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground&Walls/Ground2"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_cqjxh")
 mesh = SubResource("BoxMesh_3dwf7")
 skeleton = NodePath("")
 
-[node name="Ground" type="CollisionShape3D" parent="Ground2"]
+[node name="Ground" type="CollisionShape3D" parent="Ground&Walls/Ground2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0299788, 0)
 shape = SubResource("BoxShape3D_2n7l2")
 
@@ -146,8 +146,10 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
 [node name="CameraZone2" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
 
+[node name="Lights" type="Node" parent="."]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vw5p6")
+environment = ExtResource("10_42smx")
 camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
 compositor = SubResource("Compositor_7ac00")
 
@@ -156,6 +158,10 @@ compositor = SubResource("Compositor_7ac00")
 [node name="Water" parent="WaterZones" instance=ExtResource("10_ynmi6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
 
+[node name="BulbCollect" parent="." instance=ExtResource("11_uw1rk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1531, -0.470021, -11.6938)
+
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="camera_move" from="Camera Screens/CameraZone" to="CameraPivot" method="_on_camera_zone_camera_move"]
 [connection signal="camera_move" from="Camera Screens/CameraZone2" to="CameraPivot" method="_on_camera_zone_camera_move"]
+[connection signal="picked" from="BulbCollect" to="." method="_on_bulb_collect_picked"]

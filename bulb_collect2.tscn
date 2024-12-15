@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlo6fdmemjnxe"]
+
+[ext_resource type="Script" path="res://collectible.gd" id="1_r2ywy"]
+[ext_resource type="PackedScene" uid="uid://besq8gxk6nh5i" path="res://Assets/3D Models/LightBulbTest.fbx" id="2_7yyhp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onb2n"]
+radius = 1.7229
+height = 8.63303
+
+[sub_resource type="Animation" id="Animation_djwrl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/LightBulbTest:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/LightBulbTest:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h8prr"]
+resource_name = "collectible_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/LightBulbTest:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.15, 0), Vector3(0, 0.15, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/LightBulbTest:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(-1.27456, -1.27456, -1.27456, -1.27456),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.261799, 0), Vector3(0, 0, 0), Vector3(0, -0.261799, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhkf8"]
+_data = {
+"RESET": SubResource("Animation_djwrl"),
+"collectible_idle": SubResource("Animation_h8prr")
+}
+
+[node name="BulbCollect" type="StaticBody3D" groups=["collectibles"]]
+collision_layer = 8
+collision_mask = 0
+input_ray_pickable = false
+script = ExtResource("1_r2ywy")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="LightBulbTest" parent="Pivot" instance=ExtResource("2_7yyhp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05976, 0)
+shape = SubResource("CapsuleShape3D_onb2n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vhkf8")
+}
+autoplay = "collectible_idle"
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.90707, 0, 0, 0, 1, 0, 1.28792, -0.114924)
+aabb = AABB(-1.17043, -1, -1.68496, 2.34087, 2, 3.36993)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
