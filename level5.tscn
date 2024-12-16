@@ -1,26 +1,26 @@
-[gd_scene load_steps=28 format=3 uid="uid://blsn7u8q3ee5l"]
+[gd_scene load_steps=28 format=3 uid="uid://co6ryyjm8gjm1"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_28g6e"]
-[ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_tso63"]
-[ext_resource type="Script" path="res://camera_pivot.gd" id="3_dlo63"]
-[ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="4_71mtq"]
-[ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="5_itddm"]
-[ext_resource type="Script" path="res://score_label.gd" id="6_hdw85"]
-[ext_resource type="Texture2D" uid="uid://dah2k1qblqhye" path="res://Assets/Placeholders/1-1.jpg" id="7_v77cc"]
-[ext_resource type="Texture2D" uid="uid://cvhw4os2lo5es" path="res://Assets/Placeholders/1-2.jpg" id="8_jtg2w"]
-[ext_resource type="Environment" uid="uid://pnoy7opvunf" path="res://day_environment.tres" id="10_42smx"]
-[ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="10_gsj8o"]
-[ext_resource type="PackedScene" uid="uid://br5mrgce1kv5g" path="res://water.tscn" id="10_ynmi6"]
-[ext_resource type="PackedScene" uid="uid://dlo6fdmemjnxe" path="res://bulb_collect2.tscn" id="11_uw1rk"]
+[ext_resource type="Script" path="res://main.gd" id="1_k2ufy"]
+[ext_resource type="PackedScene" uid="uid://cecpus8r8irhs" path="res://mob.tscn" id="2_8d7ch"]
+[ext_resource type="Script" path="res://camera_pivot.gd" id="3_0aq13"]
+[ext_resource type="PackedScene" uid="uid://xii8vo72r3a8" path="res://player.tscn" id="4_2pvut"]
+[ext_resource type="FontFile" uid="uid://csg2iiax4k0we" path="res://Misc/TutoArchive/fonts/Montserrat-Medium.ttf" id="5_s104x"]
+[ext_resource type="Script" path="res://score_label.gd" id="6_a012w"]
+[ext_resource type="Texture2D" uid="uid://dah2k1qblqhye" path="res://Assets/Placeholders/1-1.jpg" id="7_mht4k"]
+[ext_resource type="Texture2D" uid="uid://cvhw4os2lo5es" path="res://Assets/Placeholders/1-2.jpg" id="8_h525x"]
+[ext_resource type="PackedScene" uid="uid://br5mrgce1kv5g" path="res://water.tscn" id="9_pqi6e"]
+[ext_resource type="PackedScene" uid="uid://bqbasplvvclj5" path="res://camera_zone.tscn" id="10_2qaf8"]
+[ext_resource type="Environment" uid="uid://pnoy7opvunf" path="res://day_environment.tres" id="11_y80nm"]
+[ext_resource type="PackedScene" uid="uid://dlo6fdmemjnxe" path="res://bulb_collect2.tscn" id="12_f24am"]
 
 [sub_resource type="Theme" id="Theme_sktml"]
-default_font = ExtResource("5_itddm")
+default_font = ExtResource("5_s104x")
 default_font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_rsv44"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3gvq"]
-albedo_texture = ExtResource("7_v77cc")
+albedo_texture = ExtResource("7_mht4k")
 uv1_scale = Vector3(2, 2, 2)
 uv1_offset = Vector3(0.34, 0, 0)
 
@@ -33,7 +33,7 @@ albedo_color = Color(0.215902, 0.215902, 0.215902, 1)
 size = Vector3(43, 1, 35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqjxh"]
-albedo_texture = ExtResource("8_jtg2w")
+albedo_texture = ExtResource("8_h525x")
 uv1_scale = Vector3(2, 2, 2)
 uv1_offset = Vector3(0.34, 0, 0)
 
@@ -60,13 +60,13 @@ size = Vector3(34, 17, 8)
 [sub_resource type="Compositor" id="Compositor_7ac00"]
 
 [node name="Level1" type="Node" node_paths=PackedStringArray("player", "world_environment")]
-script = ExtResource("1_28g6e")
-mob_scene = ExtResource("2_tso63")
+script = ExtResource("1_k2ufy")
+mob_scene = ExtResource("2_8d7ch")
 player = NodePath("Player")
 world_environment = NodePath("WorldEnvironment")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-script = ExtResource("3_dlo63")
+script = ExtResource("3_0aq13")
 speed = 100.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, -0.621148, 0.783693, 0, -0.783693, -0.621148
 shadow_enabled = true
 directional_shadow_mode = 0
 
-[node name="Player" parent="." instance=ExtResource("4_71mtq")]
+[node name="Player" parent="." instance=ExtResource("4_2pvut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.24, -0.364, 8.01)
 
 [node name="UserInterface" type="Control" parent="."]
@@ -104,7 +104,7 @@ offset_bottom = 35.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_rsv44")
-script = ExtResource("6_hdw85")
+script = ExtResource("6_a012w")
 
 [node name="Retry" type="ColorRect" parent="UserInterface"]
 layout_mode = 1
@@ -238,31 +238,31 @@ shape = SubResource("BoxShape3D_lk6ce")
 
 [node name="WaterZones" type="Node" parent="."]
 
-[node name="Water" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+[node name="Water" parent="WaterZones" instance=ExtResource("9_pqi6e")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.10822, 0.991306, -14.1974)
 
-[node name="Water2" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+[node name="Water2" parent="WaterZones" instance=ExtResource("9_pqi6e")]
 transform = Transform3D(2.34, 0, 0, 0, 2.34, 0, 0, 0, 2.34, 45.6905, 0.991308, -14.8425)
 
-[node name="Water3" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+[node name="Water3" parent="WaterZones" instance=ExtResource("9_pqi6e")]
 transform = Transform3D(2.34, 0, 0, 0, 2.34, 0, 0, 0, 2.34, 61.9973, 0.991308, -25.167)
 
 [node name="Camera Screens" type="Node" parent="." groups=["camera-zones"]]
 
-[node name="CameraZone" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
+[node name="CameraZone" parent="Camera Screens" instance=ExtResource("10_2qaf8")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0.0410786, 0)
 
-[node name="CameraZone2" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
+[node name="CameraZone2" parent="Camera Screens" instance=ExtResource("10_2qaf8")]
 transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, 0, 0)
 
 [node name="Lights" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("10_42smx")
+environment = ExtResource("11_y80nm")
 camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
 compositor = SubResource("Compositor_7ac00")
 
-[node name="BulbCollect" parent="." instance=ExtResource("11_uw1rk")]
+[node name="BulbCollect" parent="." instance=ExtResource("12_f24am")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1531, -0.470021, -11.6938)
 
 [connection signal="score_increase" from="." to="UserInterface/ScoreLabel" method="_on_score_increase"]

@@ -12,11 +12,15 @@ extends Node
 @export var day_exposure = 1
 @export var night_exposure = 0
 
+signal score_reset
+signal score_increase
+
 var camera_target_position: Transform3D
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
 	world_environment.environment.tonemap_exposure = day_exposure
+	score_reset.emit()
 	# print("main ready")
 
 func _on_player_hit() -> void:
@@ -33,3 +37,4 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_bulb_collect_picked() -> void:
 	print("main: pickup collected")
 	world_environment.environment.tonemap_exposure = night_exposure
+	score_increase.emit()

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccj014j0qnhb0"]
+[gd_scene load_steps=7 format=3 uid="uid://ccj014j0qnhb0"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1xo32"]
 [ext_resource type="PackedScene" uid="uid://blsn7u8q3ee5l" path="res://level1.tscn" id="2_sqo1d"]
+[ext_resource type="PackedScene" uid="uid://cja2gh4vkek12" path="res://level2.tscn" id="3_my12u"]
+[ext_resource type="PackedScene" uid="uid://bjsajikj3862t" path="res://level3.tscn" id="4_k3c07"]
+[ext_resource type="PackedScene" uid="uid://ca7ysfmg4onxb" path="res://level4.tscn" id="5_e6lnr"]
+[ext_resource type="PackedScene" uid="uid://co6ryyjm8gjm1" path="res://level5.tscn" id="6_3cfg0"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -12,6 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xo32")
 Level1 = ExtResource("2_sqo1d")
+Level2 = ExtResource("3_my12u")
+Level3 = ExtResource("4_k3c07")
+Level4 = ExtResource("5_e6lnr")
+Level5 = ExtResource("6_3cfg0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -23,9 +31,25 @@ offset_bottom = 255.34
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Start game" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level 1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start Game"
+text = "Level 1"
+
+[node name="Level 2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 2"
+
+[node name="Level 3" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 3"
+
+[node name="Level 4" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 4"
+
+[node name="Level 5" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 5"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -35,6 +59,10 @@ text = "Options"
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Start game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level 3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level 4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level 5" to="." method="_on_level_5_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
