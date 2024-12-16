@@ -39,7 +39,6 @@ uv1_offset = Vector3(0.34, 0, 0)
 size = Vector3(43, 1, 15)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yy1oy"]
-auto_exposure_enabled = true
 
 [sub_resource type="Compositor" id="Compositor_7ac00"]
 
@@ -120,7 +119,7 @@ text = "Press Enter to retry"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 collision_layer = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground&Walls/Ground1"]
+[node name="Placeholder" type="MeshInstance3D" parent="Ground&Walls/Ground1"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_l3gvq")
 mesh = SubResource("BoxMesh_3dwf7")
@@ -141,9 +140,8 @@ shape = SubResource("BoxShape3D_2n7l2")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, -1, 0)
 collision_layer = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground&Walls/Ground2"]
+[node name="Placeholder" type="MeshInstance3D" parent="Ground&Walls/Ground2"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_cqjxh")
 mesh = SubResource("BoxMesh_3dwf7")
 skeleton = NodePath("")
@@ -154,6 +152,7 @@ shape = SubResource("BoxShape3D_2n7l2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Ground&Walls/Ground2"]
 transform = Transform3D(44, 0, 0, 0, 1, 0, 0, 0, 36, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_k7knn")
 mesh = SubResource("BoxMesh_3dwf7")
 skeleton = NodePath("")
@@ -233,13 +232,24 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, -1.67037e-22, 0, 1, 0, -1.67037e-22, 0, 1, 0, 0.0299797, 0)
 shape = SubResource("BoxShape3D_mfqif")
 
+[node name="WaterZones" type="Node" parent="."]
+
+[node name="Water" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
+
+[node name="Water2" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+transform = Transform3D(2.34, 0, 0, 0, 2.34, 0, 0, 0, 2.34, 45.6905, 0.991308, -14.8425)
+
+[node name="Water3" parent="WaterZones" instance=ExtResource("10_ynmi6")]
+transform = Transform3D(2.34, 0, 0, 0, 2.34, 0, 0, 0, 2.34, 61.9973, 0.991308, -25.167)
+
 [node name="Camera Screens" type="Node" parent="." groups=["camera-zones"]]
 
 [node name="CameraZone" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
-transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, -1, 0)
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0.0410786, 0)
 
 [node name="CameraZone2" parent="Camera Screens" instance=ExtResource("10_gsj8o")]
-transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, 0, 0)
 
 [node name="Lights" type="Node" parent="."]
 
@@ -247,11 +257,6 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 44, -1, 0)
 environment = ExtResource("10_42smx")
 camera_attributes = SubResource("CameraAttributesPractical_yy1oy")
 compositor = SubResource("Compositor_7ac00")
-
-[node name="WaterZones" type="Node" parent="."]
-
-[node name="Water" parent="WaterZones" instance=ExtResource("10_ynmi6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.80149, 0.991308, -11.6978)
 
 [node name="BulbCollect" parent="." instance=ExtResource("11_uw1rk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1531, -0.470021, -11.6938)
