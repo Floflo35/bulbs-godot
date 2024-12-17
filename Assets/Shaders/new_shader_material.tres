@@ -1,6 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://4j34r837xja8"]
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://4j34r837xja8"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/water_plane.gdshader" id="1_q07nl"]
+
+[sub_resource type="Gradient" id="Gradient_i8ern"]
+offsets = PackedFloat32Array(0, 0.740196, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.426471, 0.426471, 0.426471, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rao5r"]
 noise_type = 3
@@ -10,6 +14,7 @@ fractal_type = 2
 seamless = true
 as_normal_map = true
 bump_strength = 1.5
+color_ramp = SubResource("Gradient_i8ern")
 noise = SubResource("FastNoiseLite_rao5r")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_txy7a"]
@@ -22,7 +27,7 @@ bump_strength = 1.2
 noise = SubResource("FastNoiseLite_txy7a")
 
 [resource]
-render_priority = 0
+render_priority = -128
 shader = ExtResource("1_q07nl")
 shader_parameter/albedo = Color(0.631373, 0.854902, 0.956863, 1)
 shader_parameter/metallic = 0.0

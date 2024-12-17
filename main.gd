@@ -19,7 +19,8 @@ var camera_target_position: Transform3D
 
 func _ready() -> void:
 	$UserInterface/Retry.hide()
-	world_environment.environment.tonemap_exposure = day_exposure
+	if world_environment != null:
+		world_environment.environment.tonemap_exposure = day_exposure
 	score_reset.emit()
 	# print("main ready")
 

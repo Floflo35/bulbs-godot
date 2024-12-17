@@ -1,7 +1,13 @@
-[gd_resource type="Environment" format=3 uid="uid://pnoy7opvunf"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://pnoy7opvunf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bb86q"]
+
+[sub_resource type="Sky" id="Sky_5tl48"]
+sky_material = SubResource("ProceduralSkyMaterial_bb86q")
 
 [resource]
-ambient_light_source = 1
-ambient_light_energy = 0.0
+background_energy_multiplier = 2.75
+sky = SubResource("Sky_5tl48")
+ambient_light_source = 3
 ssao_enabled = true
 adjustment_enabled = true
